@@ -9,7 +9,10 @@ using namespace std;
  * constructor/destructor
  */
 bs_tree::bs_tree()
-{ 
+{
+
+    
+    
 
 } 
 
@@ -19,7 +22,25 @@ bs_tree::~bs_tree()
 } 
 
 void bs_tree::insert(int key, bs_tree_i_info& t_info)
-{ 
+{
+    bs_tree_node* y;
+    bs_tree_node* x;
+    
+    T=NIL;
+    x= T.root;
+    
+    while( x != NIL){
+        y=x;
+        if(z->key < x->key){
+            x =x ->left;
+        }
+        else if(z->key > x->key){
+            z = z->y;
+        }
+        else
+        
+    }
+    
 
 }
 
