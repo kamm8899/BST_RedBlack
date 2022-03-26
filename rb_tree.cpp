@@ -68,10 +68,17 @@ void rb_tree::insert(rb_tree_node* z, rb_tree_i_info& t_info)
     {
       y = x;
 
-      if (z->key < x->key)
+        if (z->key < x->key){
 	x = x->left;
-      else
+        }
+      else if(z->key > x->key){
 	x = x->right;
+    }else{
+        //delete z if memory allocation has not been used
+        delete z;
+        return;
+        
+    }
     }
 
   z->p = y;
