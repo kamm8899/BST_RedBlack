@@ -10,14 +10,25 @@ using namespace std;
  */
 bs_tree::bs_tree()
 {
-
+/*
+ create T_nil element copied from rb tree
+ */
+    T_nil = new bs_tree_node();
+    T_nil->p = T_nil;
+    T_nil->left = T_nil;
+    T_nil->right = T_nil;
     
-    
-
+    //root of bs tree
+    T_root = T_nil;
 } 
 
 bs_tree::~bs_tree()
-{ 
+{
+    //delete nil element and all allocated nodes copied from rb tree file
+    
+    remove_all(T_root);
+    
+    delete T_nil;
 
 } 
 
