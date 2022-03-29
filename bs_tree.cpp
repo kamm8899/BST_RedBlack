@@ -93,6 +93,7 @@ int bs_tree::convert_traversal(bs_tree_node* x, int* arr, int n){
     }
     n = convert_traversal(x->left, arr, n);
     //insert current node key
+    arr[n]= x->key;
     n++;
     n= convert_traversal(x->right, arr, n);
     return n;

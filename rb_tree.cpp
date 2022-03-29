@@ -78,6 +78,8 @@ void rb_tree::insert(rb_tree_node* z, rb_tree_i_info& t_info)
       else if(z->key > x->key){
 	x = x->right;
     }else{
+        //added the duplicate count
+        t_info.i_duplicate++;
         //delete z if memory allocation has not been used
         delete z;
         return;
@@ -127,18 +129,31 @@ void rb_tree::insert_fixup(rb_tree_node*& z, rb_tree_i_info& t_info)
 	      y->color = RB_BLACK;
 	      z->p->p->color = RB_RED;
 	      z = z->p->p;
+        //added count for case 1
+            t_info.i_case_1++;
+            
 	    }
 	  else
 	    {
 	      if (z == z->p->right)
 		{
 		  z = z->p;			// Case 2
+            //added count for case 2
+            t_info.i_case_2++;
 		  left_rotate(z);
+            // added count for left rotate
+            t_info.i_left_rotate++;
+            
+            
 		}
 
 	      z->p->color = RB_BLACK;		// Case 3
 	      z->p->p->color = RB_RED;
+            //added count for case 3
+            t_info.i_case_3++;
 	      right_rotate(z->p->p);
+            //added right rotate
+            t_info.i_right_rotate++;
 	    }
 	}
       else
@@ -151,19 +166,30 @@ void rb_tree::insert_fixup(rb_tree_node*& z, rb_tree_i_info& t_info)
 	      z->p->color = RB_BLACK;		// Case 1
 	      y->color = RB_BLACK;
 	      z->p->p->color = RB_RED;
+            //added case 1 counter
 	      z = z->p->p;
+            t_info.i_case_1++;
 	    }
 	  else
 	    {
 	      if (z == z->p->left)
 		{
 		  z = z->p;			// Case 2
+            //added count for case 2
+            t_info.i_case_2++;
 		  right_rotate(z);
+            //added count for right rotate
+            t_info.i_right_rotate++;
+            
 		}
 
 	      z->p->color = RB_BLACK;		// Case 3
 	      z->p->p->color = RB_RED;
+            //added case count for 3
+            t_info.i_case_3++;
 	      left_rotate(z->p->p);
+            //added count for left rotate
+            t_info.i_left_rotate++;
 	    }
 	}
     }
@@ -302,18 +328,49 @@ int inorder_traversal(rb_tree_node* curNode, in * arr, int n){
     
 }
 
-
+//added helper function for convert
+int rb_tree::convert_traversal(rb_tree_node* x, int* arr, int n){
+    if(x == T_nil){
+        //at leaf node
+        return n;
+    }
+    n = convert_traversal(x->left, arr, n);
+    //insert the current node key into the arr pointer
+    arr[n]= x->key;
+    n++;
+    n = convert_traversal(x->right, arr, n);
+    return n;
+}
 //didnt use N should that be used and why?
 //back to the front- duplicates can't be used
 // question 2
 int rb_tree::convert(int* array, int n)
 {
-  return n;
+  //return n;
+    return convert_traversal(T_root, array, 0);
 }
 
 //question 4
 int rb_tree::check_black_height(rb_tree_node* x)
 {
-  return 0;
+    if(x == T_nil){
+        return 0;
+    }
+    int blackNodes = 0;
+    if(x->color == RB_BLACK){
+        blackNodes++;
+    }
+    //starting at a node go down to the leaf
+    int blackNodesLeft= check_black_height(x->left);
+    int blackNodesRight= check_black_height(x->right);
+    
+    if(blackNodesLeft != blackNodesRight){
+        cout<<"Error"<<endl;
+    }
+    else{
+        blackNodes += blackNodesLeft;
+    }
+    return blackNodes;
+
 }
 

@@ -51,6 +51,7 @@ class rb_tree
       { output(T_root, 1); }
 
   protected:
+    
     void insert(rb_tree_node*, rb_tree_i_info&);
     void insert_fixup(rb_tree_node*&, rb_tree_i_info&);
 
@@ -63,6 +64,9 @@ class rb_tree
 
     void inorder_output(rb_tree_node*, int);
     void output(rb_tree_node*, int);
+    
+    //added helper function for convert
+    int convert_traversal(rb_tree_node* x, int* arr, int n);
     
 };
 
