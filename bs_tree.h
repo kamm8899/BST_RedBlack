@@ -23,6 +23,10 @@ class bs_tree
   protected:
     bs_tree_node*	T_nil;
     bs_tree_node*	T_root;
+    
+    //added helper function added in binary search tree cpp
+    void remove_all(bs_tree_node*);
+    int convert_traversal(bs_tree_node* x, int* arr, int n);
 
   public:
     bs_tree();

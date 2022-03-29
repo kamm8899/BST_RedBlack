@@ -59,6 +59,10 @@ void rb_tree::insert(rb_tree_node* z, rb_tree_i_info& t_info)
  * -> search position, insert new node
  * -> fix properties after insert
  */
+    //current node x
+    //previous node y
+    //insertion node z
+    
   rb_tree_node* x;
   rb_tree_node* y;
 
@@ -293,6 +297,14 @@ void rb_tree::remove_all(rb_tree_node* x)
     }
 } /*>>>*/
 
+//added helper function for convert
+int inorder_traversal(rb_tree_node* curNode, in * arr, int n){
+    
+}
+
+
+//didnt use N should that be used and why?
+//back to the front- duplicates can't be used
 // question 2
 int rb_tree::convert(int* array, int n)
 {

@@ -63,6 +63,7 @@ class rb_tree
 
     void inorder_output(rb_tree_node*, int);
     void output(rb_tree_node*, int);
+    
 };
 
 
