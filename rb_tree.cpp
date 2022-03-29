@@ -323,10 +323,7 @@ void rb_tree::remove_all(rb_tree_node* x)
     }
 } /*>>>*/
 
-//added helper function for convert
-int inorder_traversal(rb_tree_node* curNode, in * arr, int n){
-    
-}
+
 
 //added helper function for convert
 int rb_tree::convert_traversal(rb_tree_node* x, int* arr, int n){
