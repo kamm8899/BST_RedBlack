@@ -53,6 +53,12 @@ void bs_tree::insert(int key, bs_tree_i_info& t_info)
     
     while(x != T_nil){
         y = x;
+        if (z->key == x->key){
+            t_info.i_duplicate++;
+            
+            delete z;
+            return ;
+        }
         //insertion path ways for left and right
         if(z->key < x->key){
             x= x->left;
@@ -60,14 +66,14 @@ void bs_tree::insert(int key, bs_tree_i_info& t_info)
         else if(z->key > x->key){
             x= x->right;
         }
-        else{
+//else{
             //count for duplicate
-            t_info.i_duplicate++;
+//            t_info.i_duplicate++;
             //deletes address from heap memory
-            delete z;
+//            delete z;
             //no duplicates are shown twice
-            return;
-        }
+//            return;
+//        }
     }
     //block sets all the pointers after while loop figures out where it goes
     z->p = y;
